@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kāula Tree - Encourage | Equip | Aloha</title>
+  <meta name="description" content="Kāula Tree is a prophetic ministry nonprofit seeking to awaken the world to a God who speaks. Encourage | Equip | Aloha.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/brandmark.png" sizes="32x32">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div id="preloader">
+    <div class="preloader-inner">
+      <img src="images/brandmark.png" alt="Kāula Tree" class="preloader-logo">
+      <div class="preloader-bar">
+        <div class="preloader-progress"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <img src="images/brandmark.png" alt="Kāula Tree Logo">
+        <span class="nav-logo-text">KĀULA TREE</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#trips" class="nav-link">Trips</a>
+        <a href="#teachings" class="nav-link">Teachings</a>
+        <a href="https://kaulatree.com/contact/" class="nav-link">Contact</a>
+        <a href="#support" class="nav-link btn-nav">Support <span class="arrow">&rarr;</span></a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="#about" class="mobile-link">About</a>
+      <a href="#trips" class="mobile-link">Trips</a>
+      <a href="#teachings" class="mobile-link">Teachings</a>
+      <a href="https://kaulatree.com/contact/" class="mobile-link">Contact</a>
+      <a href="https://kaulatree.com/faq/" class="mobile-link">FAQ</a>
+      <a href="#support" class="mobile-link btn-mobile">Support Kāula Tree</a>
+    </div>
+  </div>
+
+  <!-- 1. HERO — The Hook (passes the "grunt test": what you do, why it matters, what to do next) -->
+  <section id="hero" class="hero">
+    <div class="hero-bg">
+      <div class="hero-overlay"></div>
+      <img src="images/hero-palms.jpg" alt="Palm trees and mountains in Hawai'i" class="hero-fallback-img">
+    </div>
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <span class="hero-line">GOD</span>
+        <span class="hero-line">SPEAKS.</span>
+      </h1>
+      <div class="hero-cta">
+        <a href="#about" class="btn btn-primary">Learn More <span class="arrow">&rarr;</span></a>
+        <a href="#trips" class="btn btn-outline">See Our Trips <span class="arrow">&rarr;</span></a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <svg class="scroll-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </div>
+  </section>
+
+  <!-- 2. MISSION — The Problem/Purpose (answers "why does this matter?") -->
+  <section id="mission" class="section section-cream">
+    <div class="container">
+      <div class="mission-content">
+        <div class="section-tag" data-animate="fade-up">OUR MISSION</div>
+        <h2 class="mission-text" data-animate="split-text">To awaken the World to a God who speaks.</h2>
+        <p class="mission-sub" data-animate="fade-up">Because when God speaks, lives change — hearts are restored, purpose is revealed, and communities are transformed.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ABOUT + VIDEO — The Guide (empathy, origin story, "watch our story" video) -->
+  <section id="about" class="section section-dark">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-video" data-animate="fade-up">
+          <div class="video-trigger" id="videoTrigger" data-video-id="JaP3VzaEG80">
+            <img src="images/waterfall.jpg" alt="Kāula Tree Ministry" class="video-thumbnail">
+            <div class="video-play-btn">
+              <svg viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="34" cy="34" r="33" stroke="currentColor" stroke-width="2"/>
+                <polygon points="27,22 27,46 48,34" fill="currentColor"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="about-content">
+          <div class="section-tag light" data-animate="fade-up">ABOUT US</div>
+          <h2 class="section-title light" data-animate="fade-up">Rooted in Faith,<br>Reaching the World</h2>
+          <p class="about-text" data-animate="fade-up">Kāula Tree was established in 2023 by Ben Eberhart and Stanton Sunaoka in Hawai'i. What started as prayer meetings in their home grew into a global ministry dedicated to prophetic outreach and training.</p>
+          <p class="about-text" data-animate="fade-up">Drawing from experiences abroad and a deep commitment to following where God leads, Kāula Tree has become a platform for strengthening believers and equipping them in the prophetic worldwide.</p>
+          <a href="https://kaulatree.com/about/" class="btn btn-primary light" data-animate="fade-up">Read Our Story <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. STATS — Authority/Social Proof (builds trust before showing the plan) -->
+  <section class="section section-cream stats-section">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item" data-animate="counter">
+          <span class="stat-number" data-count="2023">0</span>
+          <span class="stat-label">ESTABLISHED</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" data-animate="counter">
+          <span class="stat-number" data-count="501" data-suffix="c3">0</span>
+          <span class="stat-label">NONPROFIT STATUS</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" data-animate="counter">
+          <span class="stat-number text-special">GLOBAL</span>
+          <span class="stat-label">OUTREACH</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item" data-animate="counter">
+          <span class="stat-number text-special">HAWAI'I</span>
+          <span class="stat-label">HOME BASE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SCRIPTURE — Biblical Authority (reinforces the "why" with God's word before showing what you do) -->
+  <section class="parallax-section">
+    <div class="parallax-bg">
+      <img src="images/waterfall.jpg" alt="Tropical waterfall in Hawai'i">
+    </div>
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content">
+      <blockquote class="parallax-quote" data-animate="fade-up">
+        "But the one who prophesies speaks to people for their strengthening, encouraging and comfort."
+      </blockquote>
+      <cite class="parallax-cite" data-animate="fade-up">1 Corinthians 14:3</cite>
+    </div>
+  </section>
+
+  <!-- 6. TRIPS — The Plan (here's how to get involved — primary engagement) -->
+  <section id="trips" class="section section-dark">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-tag light" data-animate="fade-up">UPCOMING TRIPS</div>
+          <h2 class="section-title light" data-animate="fade-up">See Where We're<br>Heading Next</h2>
+        </div>
+        <a href="https://kaulatree.com/trips/" class="btn btn-outline light desktop-only" data-animate="fade-up">View All Trips <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="trips-grid">
+        <div class="trip-card" data-animate="fade-up">
+          <div class="trip-image-wrap">
+            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80" alt="International Ministry Trip">
+            <div class="trip-date">UPCOMING</div>
+          </div>
+          <div class="trip-content">
+            <h3 class="trip-title">International Outreach</h3>
+            <p class="trip-desc">Join us as we travel to strengthen and encourage communities through prophetic ministry and hands-on training.</p>
+            <a href="https://kaulatree.com/trips/" class="trip-link">Learn More <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+        <div class="trip-card" data-animate="fade-up" data-delay="0.1">
+          <div class="trip-image-wrap">
+            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80" alt="Prophetic Training Trip">
+            <div class="trip-date">ONGOING</div>
+          </div>
+          <div class="trip-content">
+            <h3 class="trip-title">Prophetic Training</h3>
+            <p class="trip-desc">Equip yourself with prophetic tools and training. Our ministry trips are designed to empower and activate believers.</p>
+            <a href="https://kaulatree.com/trips/" class="trip-link">Learn More <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+        <div class="trip-card" data-animate="fade-up" data-delay="0.2">
+          <div class="trip-image-wrap">
+            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80" alt="Local Ministry">
+            <div class="trip-date">HAWAI'I</div>
+          </div>
+          <div class="trip-content">
+            <h3 class="trip-title">Local Ministry</h3>
+            <p class="trip-desc">Our roots are in Hawai'i, where it all began. We continue to serve and grow our local community in prayer and worship.</p>
+            <a href="https://kaulatree.com/trips/" class="trip-link">Learn More <span class="arrow">&rarr;</span></a>
+          </div>
+        </div>
+      </div>
+      <a href="https://kaulatree.com/trips/" class="btn btn-outline light mobile-only" data-animate="fade-up">View All Trips <span class="arrow">&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- 7. TEACHINGS — Deeper Engagement (transitional CTA for those wanting to learn more) -->
+  <section id="teachings" class="section section-cream">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <div class="section-tag" data-animate="fade-up">TEACHINGS</div>
+          <h2 class="section-title" data-animate="fade-up">Grow in the Prophetic</h2>
+        </div>
+        <a href="https://kaulatree.com/teachings-209/" class="btn btn-primary desktop-only" data-animate="fade-up">All Teachings <span class="arrow">&rarr;</span></a>
+      </div>
+      <div class="teachings-grid">
+        <div class="teaching-card" data-animate="fade-up">
+          <div class="teaching-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+          </div>
+          <h3 class="teaching-title">Prophetic Foundations</h3>
+          <p class="teaching-desc">Build a solid foundation in understanding the prophetic gifts and how they operate in the body of Christ.</p>
+          <a href="https://kaulatree.com/teachings-209/" class="teaching-link">Watch Now <span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="teaching-card" data-animate="fade-up" data-delay="0.1">
+          <div class="teaching-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5"/>
+            </svg>
+          </div>
+          <h3 class="teaching-title">Ministry Training</h3>
+          <p class="teaching-desc">Practical training sessions designed to equip and activate you in prophetic ministry wherever you are.</p>
+          <a href="https://kaulatree.com/teachings-209/" class="teaching-link">Watch Now <span class="arrow">&rarr;</span></a>
+        </div>
+        <div class="teaching-card" data-animate="fade-up" data-delay="0.2">
+          <div class="teaching-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z"/>
+            </svg>
+          </div>
+          <h3 class="teaching-title">Devotionals</h3>
+          <p class="teaching-desc">Daily encouragement and insights to help you deepen your walk with God and hear His voice more clearly.</p>
+          <a href="https://kaulatree.com/teachings-209/" class="teaching-link">Watch Now <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+      <a href="https://kaulatree.com/teachings-209/" class="btn btn-primary mobile-only" data-animate="fade-up">All Teachings <span class="arrow">&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- 8. TEAM — The People Behind the Mission (after visitors know what you do, now meet who does it) -->
+  <section id="team" class="section section-dark">
+    <div class="container">
+      <div class="section-header centered">
+        <div class="section-tag light" data-animate="fade-up">LEADERSHIP</div>
+        <h2 class="section-title light" data-animate="fade-up">Meet Our Team</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card" data-animate="fade-up">
+          <div class="team-image-wrap">
+            <img src="images/stanton-headshot-cropped.png" alt="Stanton Sunaoka" class="team-image">
+            <div class="team-overlay">
+              <a href="https://kaulatree.com/stanton-sunaoka/" class="btn btn-small">View Bio <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">STANTON SUNAOKA</h3>
+          </div>
+        </div>
+        <div class="team-card" data-animate="fade-up" data-delay="0.1">
+          <div class="team-image-wrap">
+            <img src="images/ben-headshot.jpg" alt="Ben Eberhart" class="team-image">
+            <div class="team-overlay">
+              <a href="https://kaulatree.com/ben-eberhart/" class="btn btn-small">View Bio <span class="arrow">&rarr;</span></a>
+            </div>
+          </div>
+          <div class="team-info">
+            <h3 class="team-name">BEN EBERHART</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. SUPPORT / DONATE — The Direct CTA (after the full story arc, ask for the commitment) -->
+  <section id="support" class="section section-cream">
+    <div class="container">
+      <div class="support-content centered">
+        <div class="section-tag" data-animate="fade-up">PARTNER WITH US</div>
+        <h2 class="section-title large" data-animate="fade-up">Support Kāula Tree</h2>
+        <p class="support-text" data-animate="fade-up">Your generous giving enables us to continue strengthening, encouraging, and comforting communities around the world through prophetic ministry and training. Every gift makes a difference.</p>
+        <div class="support-buttons" data-animate="fade-up">
+          <a href="https://kaulatree.com/contact/" class="btn btn-primary btn-large">Give Now <span class="arrow">&rarr;</span></a>
+          <a href="https://kaulatree.com/contact/" class="btn btn-outline btn-large">Become a Partner <span class="arrow">&rarr;</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. APP — Secondary Engagement Tool (for those already bought in) -->
+  <section class="section section-dark app-section">
+    <div class="container">
+      <div class="app-grid">
+        <div class="app-content">
+          <div class="section-tag light" data-animate="fade-up">STAY CONNECTED</div>
+          <h2 class="section-title light" data-animate="fade-up">Download the<br>Kāula Tree App</h2>
+          <ul class="app-features" data-animate="fade-up">
+            <li>Live prayer request notifications</li>
+            <li>Easy-to-use donation button</li>
+            <li>Exclusive app media</li>
+            <li>Stay up to date on all things Kāula Tree</li>
+          </ul>
+          <div class="app-buttons" data-animate="fade-up">
+            <a href="#" class="app-store-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+              App Store
+            </a>
+            <a href="#" class="app-store-btn">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-1.4l2.651 1.535a1 1 0 010 1.73l-2.651 1.535-2.535-2.535 2.535-2.265zM5.864 3.458L16.8 9.79l-2.302 2.302-8.634-8.634z"/></svg>
+              Google Play
+            </a>
+          </div>
+        </div>
+        <div class="app-mockup" data-animate="fade-up">
+          <div class="phone-frame">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <img src="images/app-screenshot.png" alt="Kāula Tree App" class="phone-screen-img">
+            </div>
+            <div class="qr-card">
+              <div class="qr-image-wrap">
+                <img src="images/qr-code.png" alt="Scan to download the Kāula Tree App" class="qr-image">
+              </div>
+              <span class="qr-label">Scan to Download</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. NEWSLETTER — Transitional CTA (captures leads from those not ready to donate/commit yet) -->
+  <section class="section section-cream newsletter-section">
+    <div class="container">
+      <div class="newsletter-grid">
+        <div class="newsletter-content">
+          <h2 class="section-title" data-animate="fade-up">Stay Up to Date</h2>
+          <p class="newsletter-text" data-animate="fade-up">Get the latest updates on trips, teachings, and all things Kāula Tree delivered to your inbox.</p>
+        </div>
+        <form class="newsletter-form" data-animate="fade-up">
+          <div class="form-group">
+            <input type="email" placeholder="Enter your email" class="form-input" required>
+            <button type="submit" class="btn btn-primary">Subscribe <span class="arrow">&rarr;</span></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">
+            <img src="images/brandmark.png" alt="Kāula Tree">
+            <span>KĀULA TREE</span>
+          </a>
+          <p class="footer-tagline">Encourage | Equip | Aloha</p>
+          <p class="footer-desc">Strengthening, encouraging, and comforting through prophetic ministry and training.</p>
+        </div>
+        <div class="footer-links-group">
+          <h4 class="footer-heading">NAVIGATE</h4>
+          <a href="https://kaulatree.com/about/" class="footer-link">About</a>
+          <a href="https://kaulatree.com/trips/" class="footer-link">Trips</a>
+          <a href="https://kaulatree.com/teachings-209/" class="footer-link">Teachings</a>
+          <a href="https://kaulatree.com/contact/" class="footer-link">Contact</a>
+        </div>
+        <div class="footer-links-group">
+          <h4 class="footer-heading">CONNECT</h4>
+          <a href="https://kaulatree.com/faq/" class="footer-link">FAQ</a>
+          <a href="https://kaulatree.com/blog/" class="footer-link">Blog</a>
+          <a href="#support" class="footer-link">Support</a>
+          <a href="https://kaulatree.com/contact/" class="footer-link">Get in Touch</a>
+        </div>
+        <div class="footer-links-group">
+          <h4 class="footer-heading">LEGAL</h4>
+          <a href="https://kaulatree.com/privacy-policy/" class="footer-link">Privacy Policy</a>
+          <a href="https://kaulatree.com/terms-and-conditions/" class="footer-link">Terms & Conditions</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Kāula Tree. All rights reserved. | EIN: 92-2496479</p>
+        <p class="footer-location">Kaneohe, Hawai'i</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+    <div class="video-modal-content">
+      <iframe id="videoIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <button class="video-modal-close" id="videoClose">&times;</button>
+    </div>
+  </div>
+
+  <script src="js/animations.js"></script>
+</body>
+</html>
