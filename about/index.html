@@ -240,9 +240,9 @@
   <script src="../js/form-protect.js"></script>
   <script src="../js/page-animations.js"></script>
   <script>
-    // Split ALL mission statement text into individual letter spans (desktop only)
+    // Split ALL mission statement text into individual letter spans (pointer devices only)
     (function() {
-      if (window.innerWidth <= 900) return;
+      if (window.matchMedia('(hover: none)').matches) return;
       var h2 = document.querySelector('.mission-statement-text');
       if (!h2) return;
 

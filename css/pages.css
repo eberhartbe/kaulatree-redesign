@@ -302,13 +302,16 @@
   }
 }
 
-/* --- About Value Cards — Mobile Touch Overrides --- */
+/* --- About Value Cards — Small Screen Styling --- */
 @media (max-width: 768px) {
   .about-value-card {
     box-shadow: 0 4px 16px rgba(113, 84, 66, 0.08);
     border-bottom: 3px solid var(--olive);
   }
+}
 
+/* --- Decorative Hover Overrides for Touch Devices --- */
+@media (hover: none) {
   .about-value-card:hover {
     transform: none;
     box-shadow: 0 4px 16px rgba(113, 84, 66, 0.08);
@@ -318,21 +321,12 @@
     transform: none;
   }
 
-  /* Decorative image zooms — disable on touch */
   .trip-page-hero:hover .trip-page-hero-image img {
     transform: none;
   }
 
-  .trip-page-hero-image img {
-    transition: none;
-  }
-
   .trip-hero-card:hover .trip-hero-image-wrap img {
     transform: none;
-  }
-
-  .trip-hero-image-wrap img {
-    transition: none;
   }
 }
 
