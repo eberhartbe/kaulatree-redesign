@@ -1843,7 +1843,8 @@ a {
 }
 
 /* --- Decorative Hover Overrides for Touch Devices --- */
-@media (hover: none) {
+/* hover: none catches touch-primary devices; pointer: coarse is a fallback for older browsers */
+@media (hover: none), (pointer: coarse) {
   /* Team cards — fully static */
   .team-card {
     transition: none;
@@ -1918,6 +1919,23 @@ a {
 
   .about-image:hover img {
     transform: none;
+  }
+
+  /* Media cards — static */
+  .media-card {
+    transition: none;
+  }
+
+  .media-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Verse highlight — always show highlighted on touch */
+  .parallax-quote .verse-highlight {
+    color: var(--olive-light);
+    text-shadow: 0 0 20px rgba(172, 173, 97, 0.4);
+    transition: none;
   }
 }
 

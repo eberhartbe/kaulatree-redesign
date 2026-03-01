@@ -311,7 +311,7 @@
 }
 
 /* --- Decorative Hover Overrides for Touch Devices --- */
-@media (hover: none) {
+@media (hover: none), (pointer: coarse) {
   /* Value cards — fully static */
   .about-value-card {
     transition: none;

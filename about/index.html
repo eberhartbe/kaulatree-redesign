@@ -242,7 +242,7 @@
   <script>
     // Split ALL mission statement text into individual letter spans (pointer devices only)
     (function() {
-      if (window.matchMedia('(hover: none)').matches) return;
+      if (window.matchMedia('(hover: none)').matches || window.matchMedia('(pointer: coarse)').matches) return;
       var h2 = document.querySelector('.mission-statement-text');
       if (!h2) return;
 
