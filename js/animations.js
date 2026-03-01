@@ -272,8 +272,9 @@ const scrollAnimations = {
       return reels;
     }
 
-    function spinReels(reels) {
+    function spinReels(reels, el, finalText) {
       const totalReelCount = reels.filter(r => r !== null).length;
+      let completed = 0;
       reels.forEach((reel, i) => {
         if (!reel) return;
 
@@ -286,7 +287,15 @@ const scrollAnimations = {
             y: `${reel.totalDistance}em`,
             duration: slotDuration - staggerDelay,
             delay: staggerDelay,
-            ease: 'power2.inOut'
+            ease: 'power2.inOut',
+            onComplete: function() {
+              completed++;
+              if (completed === totalReelCount && el && finalText) {
+                el.textContent = finalText;
+                el.style.display = '';
+                el.style.gap = '';
+              }
+            }
           }
         );
       });
@@ -312,7 +321,7 @@ const scrollAnimations = {
           trigger: el,
           start: 'top 95%',
           once: true,
-          onEnter: () => spinReels(reels)
+          onEnter: () => spinReels(reels, numberEl, finalText)
         }
       });
     });
@@ -333,7 +342,7 @@ const scrollAnimations = {
           trigger: parent,
           start: 'top 95%',
           once: true,
-          onEnter: () => spinReels(reels)
+          onEnter: () => spinReels(reels, el, finalText)
         }
       });
     });
