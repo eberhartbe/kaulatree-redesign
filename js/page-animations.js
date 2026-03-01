@@ -81,6 +81,7 @@ const scrollAnimations = {
 // ========================
 const sectionLines = {
   init() {
+    if (window.innerWidth <= 900) return;
     document.querySelectorAll('.section').forEach(section => {
       const line = document.createElement('div');
       line.style.cssText = 'position:absolute;bottom:0;left:50%;width:0;height:1px;transform:translateX(-50%);transition:width 1.2s cubic-bezier(0.16,1,0.3,1);';
@@ -238,7 +239,11 @@ const magneticButtons = {
 const cardStagger = {
   init() {
     const cards = gsap.utils.toArray('.trip-card, .teaching-card, .team-card, .about-value-card');
-    if (cards.length) {
+    if (!cards.length) return;
+
+    if (window.innerWidth <= 900) {
+      cards.forEach(card => gsap.set(card, { opacity: 1, y: 0 }));
+    } else {
       cards.forEach((card, i) => {
         gsap.to(card, {
           opacity: 1,
@@ -262,6 +267,7 @@ const cardStagger = {
 // ========================
 const titleStagger = {
   init() {
+    if (window.innerWidth <= 900) return;
     gsap.utils.toArray('.section-title').forEach(title => {
       // Skip if already animated by data-animate
       if (title.hasAttribute('data-animate')) return;
@@ -299,6 +305,7 @@ const titleStagger = {
 // ========================
 const parallaxImages = {
   init() {
+    if (window.innerWidth <= 1024) return;
     document.querySelectorAll('.resource-feature-visual img, .trip-page-hero-image img').forEach(img => {
       gsap.to(img, {
         yPercent: -8,
@@ -365,6 +372,15 @@ document.addEventListener('DOMContentLoaded', () => {
   tiltCards.init();
 });
 
+// Refresh ScrollTrigger on resize (debounced, width-only to avoid mobile address bar triggers)
+let lastWidth = window.innerWidth;
+let resizeTimer;
 window.addEventListener('resize', () => {
-  ScrollTrigger.refresh();
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (window.innerWidth !== lastWidth) {
+      lastWidth = window.innerWidth;
+      ScrollTrigger.refresh();
+    }
+  }, 200);
 });

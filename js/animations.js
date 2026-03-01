@@ -67,30 +67,32 @@ const hero = {
       ease: 'power3.out'
     }, 0.9);
 
-    // Parallax effect on hero image on scroll
-    gsap.to('.hero-fallback-img', {
-      yPercent: 20,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
+    // Parallax effect on hero image on scroll (skip on touch devices — scrub causes jank)
+    if (window.innerWidth > 1024) {
+      gsap.to('.hero-fallback-img', {
+        yPercent: 20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
 
-    // Fade hero content on scroll
-    gsap.to('.hero-content', {
-      opacity: 0,
-      y: -60,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '.hero',
-        start: '60% top',
-        end: 'bottom top',
-        scrub: true
-      }
-    });
+      // Fade hero content on scroll
+      gsap.to('.hero-content', {
+        opacity: 0,
+        y: -60,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.hero',
+          start: '60% top',
+          end: 'bottom top',
+          scrub: true
+        }
+      });
+    }
   }
 };
 
@@ -382,6 +384,7 @@ const scrollAnimations = {
   },
 
   initParallax() {
+    if (window.innerWidth <= 1024) return;
     const parallaxBg = document.querySelector('.parallax-bg');
     if (parallaxBg) {
       gsap.to('.parallax-bg img', {
@@ -398,48 +401,58 @@ const scrollAnimations = {
   },
 
   initCardStagger() {
+    const isMobile = window.innerWidth <= 900;
+
     // Trip cards stagger
     const tripCards = gsap.utils.toArray('.trip-card');
     if (tripCards.length) {
-      tripCards.forEach((card, i) => {
-        gsap.to(card, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: i * 0.12,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 88%',
-            toggleActions: 'play none none none'
-          }
+      if (isMobile) {
+        tripCards.forEach(card => gsap.set(card, { opacity: 1, y: 0 }));
+      } else {
+        tripCards.forEach((card, i) => {
+          gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: i * 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 88%',
+              toggleActions: 'play none none none'
+            }
+          });
         });
-      });
+      }
     }
 
     // Teaching cards stagger
     const teachingCards = gsap.utils.toArray('.teaching-card');
     if (teachingCards.length) {
-      teachingCards.forEach((card, i) => {
-        gsap.to(card, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: i * 0.12,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 88%',
-            toggleActions: 'play none none none'
-          }
+      if (isMobile) {
+        teachingCards.forEach(card => gsap.set(card, { opacity: 1, y: 0 }));
+      } else {
+        teachingCards.forEach((card, i) => {
+          gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: i * 0.12,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 88%',
+              toggleActions: 'play none none none'
+            }
+          });
         });
-      });
+      }
     }
 
-    // Team cards — skip per-card ScrollTrigger on mobile to avoid scroll jank
+    // Team cards
     const teamCards = gsap.utils.toArray('.team-card');
     if (teamCards.length) {
-      if (window.innerWidth <= 768) {
+      if (isMobile) {
         teamCards.forEach(card => gsap.set(card, { opacity: 1, y: 0 }));
       } else {
         teamCards.forEach((card, i) => {
@@ -617,21 +630,25 @@ const magneticButtons = {
 // ========================
 const sectionTransitions = {
   init() {
-    gsap.utils.toArray('.section').forEach(section => {
-      // Animated line at bottom of each section
-      const line = document.createElement('div');
-      line.style.cssText = 'position:absolute;bottom:0;left:50%;width:0;height:1px;transform:translateX(-50%);transition:width 1.2s cubic-bezier(0.16,1,0.3,1);';
-      line.style.background = section.classList.contains('section-dark')
-        ? 'rgba(172,173,97,0.15)' : 'rgba(113,84,66,0.1)';
-      section.style.position = 'relative';
-      section.appendChild(line);
+    const isMobile = window.innerWidth <= 900;
 
-      ScrollTrigger.create({
-        trigger: section,
-        start: 'top 70%',
-        onEnter: () => { line.style.width = '80%'; }
+    if (!isMobile) {
+      gsap.utils.toArray('.section').forEach(section => {
+        // Animated line at bottom of each section
+        const line = document.createElement('div');
+        line.style.cssText = 'position:absolute;bottom:0;left:50%;width:0;height:1px;transform:translateX(-50%);transition:width 1.2s cubic-bezier(0.16,1,0.3,1);';
+        line.style.background = section.classList.contains('section-dark')
+          ? 'rgba(172,173,97,0.15)' : 'rgba(113,84,66,0.1)';
+        section.style.position = 'relative';
+        section.appendChild(line);
+
+        ScrollTrigger.create({
+          trigger: section,
+          start: 'top 70%',
+          onEnter: () => { line.style.width = '80%'; }
+        });
       });
-    });
+    }
 
     // Section tag line reveal
     gsap.utils.toArray('.section-tag').forEach(tag => {
@@ -649,34 +666,40 @@ const sectionTransitions = {
 // ========================
 const sectionEnhancements = {
   init() {
-    // --- STAT DIVIDERS: grow height (no data-animate on these) ---
-    const dividers = gsap.utils.toArray('.stat-divider');
-    dividers.forEach(div => {
-      gsap.from(div, {
-        scaleY: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: div,
-          start: 'top 90%',
-          toggleActions: 'play none none none'
-        }
-      });
-    });
+    const isMobile = window.innerWidth <= 900;
 
-    // --- SCRIPTURE: parallax text drift on scroll ---
-    const parallaxContent = document.querySelector('.parallax-content');
-    if (parallaxContent) {
-      gsap.to(parallaxContent, {
-        yPercent: -20,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.parallax-section',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: 1
-        }
+    // --- STAT DIVIDERS: grow height (no data-animate on these) ---
+    if (!isMobile) {
+      const dividers = gsap.utils.toArray('.stat-divider');
+      dividers.forEach(div => {
+        gsap.from(div, {
+          scaleY: 0,
+          duration: 0.8,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: div,
+            start: 'top 90%',
+            toggleActions: 'play none none none'
+          }
+        });
       });
+    }
+
+    // --- SCRIPTURE: parallax text drift on scroll (skip on touch devices) ---
+    if (window.innerWidth > 1024) {
+      const parallaxContent = document.querySelector('.parallax-content');
+      if (parallaxContent) {
+        gsap.to(parallaxContent, {
+          yPercent: -20,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '.parallax-section',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1
+          }
+        });
+      }
     }
 
     // --- TRIP HERO CARD: add slide-in on top of fade-up ---
@@ -691,77 +714,80 @@ const sectionEnhancements = {
       });
     }
 
-    // --- APP FEATURES: stagger list items (no data-animate on li's) ---
-    const appLis = gsap.utils.toArray('.app-features li');
-    if (appLis.length) {
-      appLis.forEach((li, i) => {
-        gsap.from(li, {
-          x: -30,
-          opacity: 0,
-          duration: 0.5,
-          delay: i * 0.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: li,
-            start: 'top 92%',
-            toggleActions: 'play none none none'
-          }
+    // Skip per-element ScrollTriggers on mobile to reduce scroll listener overhead
+    if (!isMobile) {
+      // --- APP FEATURES: stagger list items (no data-animate on li's) ---
+      const appLis = gsap.utils.toArray('.app-features li');
+      if (appLis.length) {
+        appLis.forEach((li, i) => {
+          gsap.from(li, {
+            x: -30,
+            opacity: 0,
+            duration: 0.5,
+            delay: i * 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: li,
+              start: 'top 92%',
+              toggleActions: 'play none none none'
+            }
+          });
         });
-      });
-    }
+      }
 
-    // --- APP STORE BUTTONS: bounce in (no data-animate on these) ---
-    const appBtns = gsap.utils.toArray('.app-store-btn');
-    if (appBtns.length) {
-      appBtns.forEach((btn, i) => {
-        gsap.from(btn, {
+      // --- APP STORE BUTTONS: bounce in (no data-animate on these) ---
+      const appBtns = gsap.utils.toArray('.app-store-btn');
+      if (appBtns.length) {
+        appBtns.forEach((btn, i) => {
+          gsap.from(btn, {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            delay: 0.2 + i * 0.1,
+            ease: 'back.out(1.4)',
+            scrollTrigger: {
+              trigger: btn,
+              start: 'top 92%',
+              toggleActions: 'play none none none'
+            }
+          });
+        });
+      }
+
+      // --- FOOTER: stagger link groups (no data-animate) ---
+      const footerGroups = gsap.utils.toArray('.footer-links-group');
+      if (footerGroups.length) {
+        footerGroups.forEach((group, i) => {
+          gsap.from(group, {
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            delay: i * 0.1,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: group,
+              start: 'top 95%',
+              toggleActions: 'play none none none'
+            }
+          });
+        });
+      }
+
+      // --- FOOTER BRAND: fade in (no data-animate) ---
+      const footerBrand = document.querySelector('.footer-brand');
+      if (footerBrand) {
+        gsap.from(footerBrand, {
           y: 20,
           opacity: 0,
-          duration: 0.6,
-          delay: 0.2 + i * 0.1,
-          ease: 'back.out(1.4)',
-          scrollTrigger: {
-            trigger: btn,
-            start: 'top 92%',
-            toggleActions: 'play none none none'
-          }
-        });
-      });
-    }
-
-    // --- FOOTER: stagger link groups (no data-animate) ---
-    const footerGroups = gsap.utils.toArray('.footer-links-group');
-    if (footerGroups.length) {
-      footerGroups.forEach((group, i) => {
-        gsap.from(group, {
-          y: 30,
-          opacity: 0,
-          duration: 0.6,
-          delay: i * 0.1,
+          duration: 0.8,
           ease: 'power3.out',
           scrollTrigger: {
-            trigger: group,
+            trigger: footerBrand,
             start: 'top 95%',
             toggleActions: 'play none none none'
           }
         });
-      });
-    }
-
-    // --- FOOTER BRAND: fade in (no data-animate) ---
-    const footerBrand = document.querySelector('.footer-brand');
-    if (footerBrand) {
-      gsap.from(footerBrand, {
-        y: 20,
-        opacity: 0,
-        duration: 0.8,
-        ease: 'power3.out',
-        scrollTrigger: {
-          trigger: footerBrand,
-          start: 'top 95%',
-          toggleActions: 'play none none none'
-        }
-      });
+      }
     }
   }
 };
@@ -866,9 +892,17 @@ document.addEventListener('DOMContentLoaded', () => {
   preloader.init();
 });
 
-// Refresh ScrollTrigger on resize
+// Refresh ScrollTrigger on resize (debounced, width-only to avoid mobile address bar triggers)
+let lastWidth = window.innerWidth;
+let resizeTimer;
 window.addEventListener('resize', () => {
-  ScrollTrigger.refresh();
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => {
+    if (window.innerWidth !== lastWidth) {
+      lastWidth = window.innerWidth;
+      ScrollTrigger.refresh();
+    }
+  }, 200);
 });
 
 // ========================
