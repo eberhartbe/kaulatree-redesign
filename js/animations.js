@@ -477,6 +477,12 @@ const scrollAnimations = {
     const missionText = document.querySelector('.mission-text');
     if (!missionText) return;
 
+    // Skip word-split animation on mobile/tablet — causes bad line breaks
+    if (window.innerWidth <= 900) {
+      gsap.set(missionText, { opacity: 1, y: 0 });
+      return;
+    }
+
     // Split into words and wrap
     const text = missionText.textContent;
     const words = text.split(' ');

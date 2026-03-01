@@ -317,6 +317,23 @@
   .about-value-card:hover .about-value-icon {
     transform: none;
   }
+
+  /* Decorative image zooms — disable on touch */
+  .trip-page-hero:hover .trip-page-hero-image img {
+    transform: none;
+  }
+
+  .trip-page-hero-image img {
+    transition: none;
+  }
+
+  .trip-hero-card:hover .trip-hero-image-wrap img {
+    transform: none;
+  }
+
+  .trip-hero-image-wrap img {
+    transition: none;
+  }
 }
 
 /* --- Trips Page --- */

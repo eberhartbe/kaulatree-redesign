@@ -1816,7 +1816,7 @@ a {
   }
 
   .team-card:hover .team-image-wrap {
-    outline-offset: 10px;
+    outline-offset: 6px;
     outline-color: rgba(172, 173, 97, 0.4);
   }
 
@@ -1839,6 +1839,42 @@ a {
 
   .team-card:hover .team-role {
     color: rgba(248, 243, 236, 0.5);
+  }
+}
+
+/* --- Decorative Hover Overrides for Touch Devices --- */
+@media (max-width: 768px) {
+  .trip-card {
+    transition: none;
+  }
+
+  .trip-card:hover {
+    transform: none;
+  }
+
+  .trip-card:hover .trip-image-wrap img {
+    transform: none;
+  }
+
+  .trip-image-wrap img {
+    transition: none;
+  }
+
+  .teaching-card {
+    transition: none;
+  }
+
+  .teaching-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .about-image:hover img {
+    transform: none;
+  }
+
+  .about-image img {
+    transition: none;
   }
 }
 
