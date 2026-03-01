@@ -1844,6 +1844,25 @@ a {
 
 /* --- Decorative Hover Overrides for Touch Devices --- */
 @media (hover: none) {
+  /* Team cards — fully static */
+  .team-card {
+    transition: none;
+    perspective: none;
+  }
+
+  .team-image-wrap {
+    outline: none;
+    transition: none;
+  }
+
+  .team-image {
+    transition: none;
+  }
+
+  .team-overlay {
+    display: none;
+  }
+
   .team-card:hover {
     transform: none;
   }
@@ -1854,12 +1873,7 @@ a {
   }
 
   .team-card:hover .team-image-wrap {
-    outline-offset: 10px;
-    outline-color: rgba(172, 173, 97, 0.4);
-  }
-
-  .team-overlay {
-    display: none;
+    outline: none;
   }
 
   .team-card:hover .team-name {
@@ -1870,6 +1884,15 @@ a {
     color: rgba(248, 243, 236, 0.5);
   }
 
+  /* Trip cards — static */
+  .trip-card {
+    transition: none;
+  }
+
+  .trip-image-wrap img {
+    transition: none;
+  }
+
   .trip-card:hover {
     transform: none;
   }
@@ -1878,9 +1901,19 @@ a {
     transform: none;
   }
 
+  /* Teaching cards — static */
+  .teaching-card {
+    transition: none;
+  }
+
   .teaching-card:hover {
     transform: none;
     box-shadow: none;
+  }
+
+  /* About image — static */
+  .about-image img {
+    transition: none;
   }
 
   .about-image:hover img {

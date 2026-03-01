@@ -312,17 +312,37 @@
 
 /* --- Decorative Hover Overrides for Touch Devices --- */
 @media (hover: none) {
+  /* Value cards — fully static */
+  .about-value-card {
+    transition: none;
+  }
+
+  .about-value-icon {
+    transition: none;
+  }
+
   .about-value-card:hover {
     transform: none;
-    box-shadow: 0 4px 16px rgba(113, 84, 66, 0.08);
+    box-shadow: none;
+    border-color: var(--border-light);
   }
 
   .about-value-card:hover .about-value-icon {
+    color: var(--forest);
     transform: none;
+  }
+
+  /* Trip hero images — static */
+  .trip-page-hero-image img {
+    transition: none;
   }
 
   .trip-page-hero:hover .trip-page-hero-image img {
     transform: none;
+  }
+
+  .trip-hero-image-wrap img {
+    transition: none;
   }
 
   .trip-hero-card:hover .trip-hero-image-wrap img {
