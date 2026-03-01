@@ -55,6 +55,21 @@
   line-height: 1.7;
 }
 
+/* --- Page Hero Row (text left, CTA right) --- */
+.page-hero-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+}
+
+@media (max-width: 900px) {
+  .page-hero-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
 /* --- Breadcrumb --- */
 .breadcrumb {
   display: flex;
@@ -70,10 +85,26 @@
 .breadcrumb a {
   color: rgba(248, 243, 236, 0.45);
   transition: color 0.3s;
+  position: relative;
+}
+
+.breadcrumb a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--olive);
+  transition: width 0.3s var(--ease-out);
 }
 
 .breadcrumb a:hover {
   color: var(--olive);
+}
+
+.breadcrumb a:hover::after {
+  width: 100%;
 }
 
 .breadcrumb .separator {
@@ -87,10 +118,57 @@
 
 /* --- About Page --- */
 .about-story-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: center;
+  width: 100%;
+}
+
+.mission-section {
+  padding: 40px 0;
+}
+
+.about-mission-statement {
+  text-align: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.mission-statement-text {
+  font-family: var(--font-heading);
+  font-size: clamp(56px, 9vw, 120px);
+  line-height: 1.05;
+  letter-spacing: 4px;
+  color: var(--cream);
+  margin: 0;
+}
+
+.mission-letter {
+  display: inline-block;
+  color: var(--cream);
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1),
+              color 0.3s ease,
+              text-shadow 0.3s ease;
+  cursor: default;
+  will-change: transform, color, text-shadow;
+}
+
+/* Closest ring — full highlight */
+.mission-letter.ripple-close {
+  transform: scale(1.28) translateY(-5px);
+  color: var(--olive);
+  text-shadow: 0 0 30px rgba(172, 173, 97, 0.5);
+}
+
+/* Middle ring — medium lift */
+.mission-letter.ripple-near {
+  transform: scale(1.12) translateY(-2px);
+  color: rgba(172, 173, 97, 0.75);
+  text-shadow: 0 0 15px rgba(172, 173, 97, 0.25);
+}
+
+/* Outer ring — subtle shift */
+.mission-letter.ripple-far {
+  transform: scale(1.04) translateY(-1px);
+  color: rgba(172, 173, 97, 0.4);
 }
 
 .about-story-text h3 {
@@ -111,13 +189,13 @@
 .about-story-image {
   position: relative;
   overflow: hidden;
-  aspect-ratio: 4/5;
+  border-radius: 4px;
 }
 
 .about-story-image img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  display: block;
 }
 
 .about-values-grid {
@@ -135,8 +213,14 @@
 }
 
 .about-value-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(113, 84, 66, 0.1);
+  transform: translateY(-8px);
+  box-shadow: 0 24px 64px rgba(113, 84, 66, 0.12);
+  border-color: var(--olive);
+}
+
+.about-value-card:hover .about-value-icon {
+  color: var(--olive);
+  transform: scale(1.15);
 }
 
 .about-value-icon {
@@ -144,6 +228,7 @@
   height: 48px;
   margin: 0 auto 24px;
   color: var(--forest);
+  transition: all 0.4s var(--ease-out);
 }
 
 .about-value-icon svg {
@@ -197,6 +282,57 @@
 }
 
 /* --- Trips Page --- */
+.trip-page-hero {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.trip-page-hero-image {
+  position: relative;
+  overflow: hidden;
+  min-height: 100%;
+}
+
+.trip-page-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.trip-page-hero:hover .trip-page-hero-image img {
+  transform: scale(1.05);
+}
+
+.trip-page-hero-content {
+  padding: 36px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.trip-page-hero-content .trip-title {
+  color: var(--forest);
+  font-size: 32px;
+}
+
+.trip-page-hero-content .trip-desc {
+  color: var(--brown);
+  font-size: 15px;
+}
+
+@media (max-width: 900px) {
+  .trip-page-hero {
+    grid-template-columns: 1fr;
+  }
+  .trip-page-hero-content {
+    padding: 28px;
+  }
+}
+
 .trips-page-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -641,6 +777,475 @@
   text-transform: uppercase;
   color: var(--text-muted-light);
   margin-bottom: 40px;
+}
+
+/* --- Past Trips Grid --- */
+.past-trips-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 4px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.past-trip-name {
+  font-family: var(--font-heading);
+  font-size: 20px;
+  letter-spacing: 2px;
+  color: var(--cream);
+}
+
+.past-trips-sep {
+  color: rgba(248, 243, 236, 0.25);
+  font-size: 18px;
+  margin: 0 6px;
+}
+
+/* --- Teaching Duration Badge --- */
+.teaching-duration {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--olive);
+  padding: 6px 12px;
+  border: 1px solid var(--olive);
+  margin-top: 12px;
+}
+
+/* --- Trip Actions --- */
+.trip-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.trip-actions .btn {
+  font-size: 16px;
+  padding: 16px 48px;
+}
+
+/* --- Team Role on About Page --- */
+.team-role {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(248, 243, 236, 0.5);
+  margin-top: 2px;
+}
+
+/* --- Contact Social Links --- */
+.contact-detail-text a {
+  color: var(--forest);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-detail-text a:hover {
+  color: var(--olive);
+}
+
+.contact-social-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.contact-social-link.contact-social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--cream);
+  transition: background 0.3s, transform 0.3s;
+}
+
+.contact-social-link svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.contact-social-link.contact-social-link:hover {
+  background: var(--olive);
+  color: var(--cream);
+  transform: translateY(-3px);
+}
+
+/* --- Homepage Trip Hero Card (single prominent upcoming trip) --- */
+.trip-hero-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+
+.trip-hero-image-wrap {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.trip-hero-image-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.trip-hero-card:hover .trip-hero-image-wrap img {
+  transform: scale(1.05);
+}
+
+.trip-hero-content {
+  padding: 48px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.trip-hero-content .trip-title {
+  font-size: 36px;
+  color: var(--forest);
+}
+
+.trip-hero-content .trip-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--brown);
+  margin-bottom: 28px;
+}
+
+.trip-hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+@media (max-width: 900px) {
+  .trip-hero-card {
+    grid-template-columns: 1fr;
+  }
+  .trip-hero-content {
+    padding: 28px;
+  }
+}
+
+/* --- Homepage Video Fallback Card --- */
+.trip-video-card {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  background: var(--forest-dark);
+  overflow: hidden;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.trip-video-wrap {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.trip-video-wrap .video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.trip-video-info {
+  padding: 40px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.trip-video-info .trip-title {
+  font-size: 32px;
+}
+
+.trip-video-info .trip-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(248, 243, 236, 0.65);
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .trip-video-card {
+    grid-template-columns: 1fr;
+  }
+  .trip-video-info {
+    padding: 28px;
+  }
+}
+
+/* --- Homepage Fallback CTA (below video card) --- */
+.trip-fallback-cta {
+  text-align: center;
+  margin-top: 40px;
+}
+
+/* --- Past Trips Year Rows --- */
+.past-trips-year-row {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(248, 243, 236, 0.1);
+}
+
+.past-trips-year-heading {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  margin: 0;
+  flex-shrink: 0;
+  min-width: 70px;
+}
+
+.past-trips-places {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 4px;
+  flex: 1;
+}
+
+@media (max-width: 700px) {
+  .past-trips-year-row {
+    flex-wrap: wrap;
+    gap: 8px 20px;
+  }
+}
+
+/* Recap video button */
+.past-trips-recap-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--forest-dark);
+  padding: 8px 18px;
+  background: var(--olive);
+  border: none;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.past-trips-recap-btn:hover {
+  background: var(--cream);
+  color: var(--forest-dark);
+}
+
+.past-trips-recap-btn svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* --- Recap Video Thumbnails --- */
+.recap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.recap-card {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.recap-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  transition: background 0.3s ease;
+}
+
+.recap-card:hover::after {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.recap-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recap-card .video-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 56px;
+  height: 56px;
+  color: var(--cream);
+  z-index: 2;
+  transition: transform 0.3s ease;
+}
+
+.recap-card:hover .video-play-btn {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.recap-year {
+  position: absolute;
+  bottom: 12px;
+  left: 14px;
+  font-family: var(--font-heading);
+  font-size: 18px;
+  letter-spacing: 2px;
+  color: var(--cream);
+  z-index: 2;
+}
+
+@media (max-width: 700px) {
+  .recap-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
+
+/* --- Past Trips YouTube CTA --- */
+.past-trips-youtube {
+  text-align: center;
+  margin-top: 48px;
+}
+
+.past-trips-note {
+  font-size: 15px;
+  color: rgba(248, 243, 236, 0.5);
+  margin-bottom: 20px;
+}
+
+/* --- Resources Page — YouTube Section Background --- */
+.resource-youtube-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.resource-youtube-section > .container {
+  position: relative;
+  z-index: 1;
+}
+
+.yt-parallax-icons {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.yt-float-icon {
+  position: absolute;
+  color: var(--forest);
+  will-change: transform;
+}
+
+/* --- Resources Page — YouTube Showcase --- */
+.resource-video-showcase {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.resource-video-main {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(54, 74, 41, 0.15);
+}
+
+.resource-video-main .video-trigger {
+  aspect-ratio: 16/9;
+}
+
+.resource-video-main .video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.resource-video-main .video-trigger:hover .video-thumbnail {
+  transform: scale(1.03);
+}
+
+.resource-video-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 40px 28px 20px;
+  background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, transparent 100%);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.resource-video-badge {
+  background: var(--olive);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 12px;
+  letter-spacing: 2px;
+  padding: 4px 10px;
+  border-radius: 3px;
+}
+
+.resource-video-title {
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.resource-video-info {
+  text-align: center;
+  max-width: 600px;
+  margin: 36px auto 0;
+}
+
+.resource-video-info h3 {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  letter-spacing: 2px;
+  color: var(--forest);
+  margin-bottom: 12px;
+}
+
+.resource-video-info p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--brown);
+  margin-bottom: 24px;
+}
+
+@media (max-width: 900px) {
+  .resource-video-info {
+    margin-top: 28px;
+  }
+  .resource-video-info h3 {
+    font-size: 26px;
+  }
 }
 
 /* --- Navbar on subpages (always scrolled appearance) --- */

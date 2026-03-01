@@ -31,6 +31,7 @@ const preloader = {
         document.getElementById('preloader').style.display = 'none';
         hero.init();
         scrollAnimations.init();
+        sectionEnhancements.init();
       }
     }, '-=0.2');
   }
@@ -570,23 +571,152 @@ const magneticButtons = {
 // ========================
 const sectionTransitions = {
   init() {
-    // Add horizontal line animation between sections
     gsap.utils.toArray('.section').forEach(section => {
-      const isDark = section.classList.contains('section-dark');
+      // Animated line at bottom of each section
+      const line = document.createElement('div');
+      line.style.cssText = 'position:absolute;bottom:0;left:50%;width:0;height:1px;transform:translateX(-50%);transition:width 1.2s cubic-bezier(0.16,1,0.3,1);';
+      line.style.background = section.classList.contains('section-dark')
+        ? 'rgba(172,173,97,0.15)' : 'rgba(113,84,66,0.1)';
+      section.style.position = 'relative';
+      section.appendChild(line);
 
-      // Subtle scale effect on sections
-      gsap.fromTo(section,
-        { },
-        {
-          scrollTrigger: {
-            trigger: section,
-            start: 'top bottom',
-            end: 'top 30%',
-            scrub: 1
-          }
-        }
-      );
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 70%',
+        onEnter: () => { line.style.width = '80%'; }
+      });
     });
+
+    // Section tag line reveal
+    gsap.utils.toArray('.section-tag').forEach(tag => {
+      ScrollTrigger.create({
+        trigger: tag,
+        start: 'top 90%',
+        onEnter: () => tag.classList.add('is-visible')
+      });
+    });
+  }
+};
+
+// ========================
+// HOMEPAGE SECTION ENHANCEMENTS
+// ========================
+const sectionEnhancements = {
+  init() {
+    // --- STAT DIVIDERS: grow height (no data-animate on these) ---
+    const dividers = gsap.utils.toArray('.stat-divider');
+    dividers.forEach(div => {
+      gsap.from(div, {
+        scaleY: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: div,
+          start: 'top 90%',
+          toggleActions: 'play none none none'
+        }
+      });
+    });
+
+    // --- SCRIPTURE: parallax text drift on scroll ---
+    const parallaxContent = document.querySelector('.parallax-content');
+    if (parallaxContent) {
+      gsap.to(parallaxContent, {
+        yPercent: -20,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.parallax-section',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+    }
+
+    // --- TRIP HERO CARD: add slide-in on top of fade-up ---
+    const tripHeroCard = document.querySelector('.trip-hero-card');
+    if (tripHeroCard) {
+      // This adds an x offset — the existing fade-up handles opacity+y
+      gsap.set(tripHeroCard, { x: -40 });
+      ScrollTrigger.create({
+        trigger: tripHeroCard,
+        start: 'top 85%',
+        onEnter: () => gsap.to(tripHeroCard, { x: 0, duration: 1, ease: 'power3.out' })
+      });
+    }
+
+    // --- APP FEATURES: stagger list items (no data-animate on li's) ---
+    const appLis = gsap.utils.toArray('.app-features li');
+    if (appLis.length) {
+      appLis.forEach((li, i) => {
+        gsap.from(li, {
+          x: -30,
+          opacity: 0,
+          duration: 0.5,
+          delay: i * 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: li,
+            start: 'top 92%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+    }
+
+    // --- APP STORE BUTTONS: bounce in (no data-animate on these) ---
+    const appBtns = gsap.utils.toArray('.app-store-btn');
+    if (appBtns.length) {
+      appBtns.forEach((btn, i) => {
+        gsap.from(btn, {
+          y: 20,
+          opacity: 0,
+          duration: 0.6,
+          delay: 0.2 + i * 0.1,
+          ease: 'back.out(1.4)',
+          scrollTrigger: {
+            trigger: btn,
+            start: 'top 92%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+    }
+
+    // --- FOOTER: stagger link groups (no data-animate) ---
+    const footerGroups = gsap.utils.toArray('.footer-links-group');
+    if (footerGroups.length) {
+      footerGroups.forEach((group, i) => {
+        gsap.from(group, {
+          y: 30,
+          opacity: 0,
+          duration: 0.6,
+          delay: i * 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: group,
+            start: 'top 95%',
+            toggleActions: 'play none none none'
+          }
+        });
+      });
+    }
+
+    // --- FOOTER BRAND: fade in (no data-animate) ---
+    const footerBrand = document.querySelector('.footer-brand');
+    if (footerBrand) {
+      gsap.from(footerBrand, {
+        y: 20,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: footerBrand,
+          start: 'top 95%',
+          toggleActions: 'play none none none'
+        }
+      });
+    }
   }
 };
 

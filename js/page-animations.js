@@ -64,6 +64,37 @@ const scrollAnimations = {
         }
       });
     });
+
+    // Section tag line reveal
+    gsap.utils.toArray('.section-tag').forEach(tag => {
+      ScrollTrigger.create({
+        trigger: tag,
+        start: 'top 90%',
+        onEnter: () => tag.classList.add('is-visible')
+      });
+    });
+  }
+};
+
+// ========================
+// HORIZONTAL SECTION LINES
+// ========================
+const sectionLines = {
+  init() {
+    document.querySelectorAll('.section').forEach(section => {
+      const line = document.createElement('div');
+      line.style.cssText = 'position:absolute;bottom:0;left:50%;width:0;height:1px;transform:translateX(-50%);transition:width 1.2s cubic-bezier(0.16,1,0.3,1);';
+      line.style.background = section.classList.contains('section-dark')
+        ? 'rgba(172,173,97,0.15)' : 'rgba(113,84,66,0.1)';
+      section.style.position = 'relative';
+      section.appendChild(line);
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 70%',
+        onEnter: () => { line.style.width = '80%'; }
+      });
+    });
   }
 };
 
@@ -227,6 +258,63 @@ const cardStagger = {
 };
 
 // ========================
+// SECTION TITLE WORD STAGGER
+// ========================
+const titleStagger = {
+  init() {
+    gsap.utils.toArray('.section-title').forEach(title => {
+      // Skip if already animated by data-animate
+      if (title.hasAttribute('data-animate')) return;
+
+      const text = title.innerHTML;
+      // Split by words, preserving HTML tags like <br>
+      const words = text.split(/(\s+|<br\s*\/?>)/);
+      title.innerHTML = words.map(w => {
+        if (w.match(/^<br/i) || w.match(/^\s+$/)) return w;
+        return '<span class="word-wrap" style="display:inline-block;overflow:hidden;vertical-align:top"><span class="word-inner" style="display:inline-block;transform:translateY(100%);opacity:0">' + w + '</span></span>';
+      }).join('');
+
+      const inners = title.querySelectorAll('.word-inner');
+      if (inners.length) {
+        ScrollTrigger.create({
+          trigger: title,
+          start: 'top 85%',
+          onEnter: () => {
+            gsap.to(inners, {
+              y: 0,
+              opacity: 1,
+              duration: 0.7,
+              stagger: 0.04,
+              ease: 'power3.out'
+            });
+          }
+        });
+      }
+    });
+  }
+};
+
+// ========================
+// PARALLAX IMAGES
+// ========================
+const parallaxImages = {
+  init() {
+    document.querySelectorAll('.resource-feature-visual img, .trip-page-hero-image img').forEach(img => {
+      gsap.to(img, {
+        yPercent: -8,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: img.closest('.team-image-wrap, .resource-feature-visual, .trip-page-hero-image') || img,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        }
+      });
+    });
+  }
+};
+
+// ========================
 // TILT CARDS
 // ========================
 const tiltCards = {
@@ -268,6 +356,9 @@ document.addEventListener('DOMContentLoaded', () => {
   mobileMenu.init();
   pageHero.init();
   scrollAnimations.init();
+  sectionLines.init();
+  titleStagger.init();
+  parallaxImages.init();
   cursorFollower.init();
   magneticButtons.init();
   cardStagger.init();

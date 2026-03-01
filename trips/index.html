@@ -29,9 +29,9 @@
       <div class="nav-links">
         <a href="../about/" class="nav-link">About</a>
         <a href="../trips/" class="nav-link">Trips</a>
-        <a href="../teachings/" class="nav-link">Teachings</a>
+        <a href="../resources/" class="nav-link">Resources</a>
         <a href="../contact/" class="nav-link">Contact</a>
-        <a href="../#support" class="nav-link btn-nav">Support <span class="arrow">&rarr;</span></a>
+        <a href="https://pushpay.com/g/kaulatree" target="_blank" rel="noopener" class="nav-link btn-nav">Donate <span class="arrow">&rarr;</span></a>
       </div>
       <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
         <span></span>
@@ -45,7 +45,7 @@
     <div class="mobile-menu-inner">
       <a href="../about/" class="mobile-link">About</a>
       <a href="../trips/" class="mobile-link">Trips</a>
-      <a href="../teachings/" class="mobile-link">Teachings</a>
+      <a href="../resources/" class="mobile-link">Resources</a>
       <a href="../contact/" class="mobile-link">Contact</a>
       <a href="../#support" class="mobile-link btn-mobile">Support Kāula Tree</a>
     </div>
@@ -60,115 +60,64 @@
         <span class="current">Trips</span>
       </div>
       <span class="page-hero-tag">MINISTRY TRIPS</span>
-      <h1 class="page-hero-title">WHERE WE'RE<br>HEADING NEXT</h1>
-      <p class="page-hero-desc">Join us as we travel to strengthen, encourage, and comfort communities around the world through prophetic ministry.</p>
+      <h1 class="page-hero-title">FROM HAWAI'I<br>TO THE WORLD</h1>
+      <p class="page-hero-desc">We travel to strengthen, encourage, and comfort communities around the world through prophetic ministry and training.</p>
     </div>
   </section>
 
-  <!-- Trips Listing -->
-  <section class="section section-cream">
+  <!-- Upcoming Trip (hidden entirely when no upcoming trip) -->
+  <section id="trips-upcoming-section" class="section section-cream" style="display: none;">
     <div class="container">
       <div class="section-header">
         <div>
           <div class="section-tag" data-animate="fade-up">UPCOMING</div>
-          <h2 class="section-title" data-animate="fade-up">Upcoming Trips</h2>
+          <h2 class="section-title" data-animate="fade-up">Upcoming Trip</h2>
         </div>
       </div>
-      <div class="trips-page-grid">
-        <div class="trip-card" data-animate="fade-up">
-          <div class="trip-image-wrap">
-            <img src="https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?w=800&q=80" alt="International Ministry Trip">
-            <div class="trip-date">UPCOMING</div>
-          </div>
-          <div class="trip-content">
-            <h3 class="trip-title">International Outreach</h3>
-            <p class="trip-desc">Join us as we travel to strengthen and encourage communities through prophetic ministry and hands-on training.</p>
-            <ul class="trip-detail-list">
-              <li>Prophetic ministry and prayer</li>
-              <li>Community outreach and service</li>
-              <li>Team worship and fellowship</li>
-            </ul>
-            <a href="../contact/" class="trip-link">Get Details <span class="arrow">&rarr;</span></a>
-          </div>
-        </div>
-        <div class="trip-card" data-animate="fade-up" data-delay="0.1">
-          <div class="trip-image-wrap">
-            <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&q=80" alt="Prophetic Training Trip">
-            <div class="trip-date">ONGOING</div>
-          </div>
-          <div class="trip-content">
-            <h3 class="trip-title">Prophetic Training</h3>
-            <p class="trip-desc">Equip yourself with prophetic tools and training. Our ministry trips are designed to empower and activate believers.</p>
-            <ul class="trip-detail-list">
-              <li>Hands-on prophetic activation</li>
-              <li>Small group training sessions</li>
-              <li>One-on-one mentorship</li>
-            </ul>
-            <a href="../contact/" class="trip-link">Get Details <span class="arrow">&rarr;</span></a>
-          </div>
-        </div>
-        <div class="trip-card" data-animate="fade-up" data-delay="0.15">
-          <div class="trip-image-wrap">
-            <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=800&q=80" alt="Local Ministry">
-            <div class="trip-date">HAWAI'I</div>
-          </div>
-          <div class="trip-content">
-            <h3 class="trip-title">Local Ministry</h3>
-            <p class="trip-desc">Our roots are in Hawai'i, where it all began. We continue to serve and grow our local community in prayer and worship.</p>
-            <ul class="trip-detail-list">
-              <li>Local prayer meetings</li>
-              <li>Community worship nights</li>
-              <li>Prophetic ministry outreach</li>
-            </ul>
-            <a href="../contact/" class="trip-link">Get Details <span class="arrow">&rarr;</span></a>
-          </div>
-        </div>
-        <div class="trip-card" data-animate="fade-up" data-delay="0.2">
-          <div class="trip-image-wrap">
-            <img src="https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=800&q=80" alt="Mission Trip">
-            <div class="trip-date">COMING SOON</div>
-          </div>
-          <div class="trip-content">
-            <h3 class="trip-title">Mission Partnerships</h3>
-            <p class="trip-desc">We partner with churches and organizations worldwide to bring prophetic ministry and encouragement to their communities.</p>
-            <ul class="trip-detail-list">
-              <li>Church partnerships</li>
-              <li>Conference speaking</li>
-              <li>Collaborative ministry events</li>
-            </ul>
-            <a href="../contact/" class="trip-link">Get Details <span class="arrow">&rarr;</span></a>
-          </div>
-        </div>
+      <div id="trips-page-upcoming">
+        <!-- Populated by trips-renderer.js -->
       </div>
     </div>
   </section>
 
-  <!-- What to Expect -->
-  <section class="section section-dark">
+  <!-- Past Trips (populated from config, grouped by year) -->
+  <section class="section section-dark" style="padding: 80px 0;">
     <div class="container">
-      <div class="about-story-grid">
-        <div class="about-story-text">
-          <div class="section-tag light" data-animate="fade-up">WHAT TO EXPECT</div>
-          <h3 class="light" style="color: var(--cream);" data-animate="fade-up">More Than a Trip —<br>A Calling</h3>
-          <p style="color: rgba(248, 243, 236, 0.7);" data-animate="fade-up">Our trips aren't vacations — they're opportunities to step into what God has called you to. Each trip is designed to stretch your faith, activate your gifts, and connect you with a community of believers who are passionate about hearing God's voice.</p>
-          <p style="color: rgba(248, 243, 236, 0.7);" data-animate="fade-up">Whether you've been walking in the prophetic for years or you're just starting to explore what it means, there's a place for you. Our team will walk alongside you every step of the way.</p>
-          <a href="../contact/" class="btn btn-primary light" data-animate="fade-up">Inquire About Trips <span class="arrow">&rarr;</span></a>
-        </div>
-        <div class="about-story-image" data-animate="fade-up">
-          <img src="../images/waterfall.jpg" alt="Hawai'i waterfall">
-        </div>
+      <div class="section-header centered" style="margin-bottom: 32px;">
+        <div class="section-tag light" data-animate="fade-up">WHERE WE'VE BEEN</div>
+        <h2 class="section-title light" data-animate="fade-up">Past Trips</h2>
+      </div>
+      <div id="past-trips-container">
+        <!-- Populated by trips-renderer.js -->
+      </div>
+      <div class="past-trips-youtube" data-animate="fade-up">
+        <a href="https://www.youtube.com/@kaulatree" target="_blank" rel="noopener" class="btn btn-outline light">Watch Past Trip Recaps on YouTube <span class="arrow">&rarr;</span></a>
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="section section-cream">
+  <!-- Newsletter -->
+  <section class="section section-cream newsletter-section">
     <div class="container">
-      <div class="trips-cta" data-animate="fade-up">
-        <div class="section-tag">READY TO GO?</div>
-        <h2>Join Our Next Trip</h2>
-        <p class="support-text">Reach out to learn more about upcoming trips, dates, and how you can be part of what God is doing around the world.</p>
-        <a href="../contact/" class="btn btn-primary btn-large">Contact Us <span class="arrow">&rarr;</span></a>
+      <div class="newsletter-grid">
+        <div class="newsletter-content">
+          <h2 class="section-title" data-animate="fade-up">Stay in the Loop</h2>
+          <p class="newsletter-text" data-animate="fade-up">Subscribe to get updates on upcoming trips, recaps, and everything Kāula Tree is doing around the world.</p>
+        </div>
+        <form class="newsletter-form" data-animate="fade-up" action="https://kaulatree.us13.list-manage.com/subscribe/post?u=5de64119648b310dbebd82e7e&amp;id=94408a4ec6&amp;f_id=001826eaf0" method="post" target="_blank">
+          <div class="form-row">
+            <input type="text" name="FNAME" placeholder="First name *" class="form-input" required>
+            <input type="text" name="LNAME" placeholder="Last name *" class="form-input" required>
+          </div>
+          <div class="form-group">
+            <input type="email" name="EMAIL" placeholder="Email address *" class="form-input" required>
+            <button type="submit" class="btn btn-primary">Subscribe <span class="arrow">&rarr;</span></button>
+          </div>
+          <div hidden><input type="hidden" name="tags" value="7215655,6691535"></div>
+          <div aria-hidden="true" style="position:absolute;left:-5000px;"><input type="text" name="b_5de64119648b310dbebd82e7e_94408a4ec6" tabindex="-1" value=""></div>
+          <input type="hidden" name="kt_token" class="kt-token" value="">
+          <p class="form-required-note">* Required</p>
+        </form>
       </div>
     </div>
   </section>
@@ -184,12 +133,18 @@
           </a>
           <p class="footer-tagline">Encourage | Equip | Aloha</p>
           <p class="footer-desc">Strengthening, encouraging, and comforting through prophetic ministry and training.</p>
+          <div class="footer-social">
+            <a href="https://www.instagram.com/kaulatree" target="_blank" rel="noopener" class="footer-social-link" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="https://www.facebook.com/kaulatree/" target="_blank" rel="noopener" class="footer-social-link" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="https://www.tiktok.com/@kaulatree" target="_blank" rel="noopener" class="footer-social-link" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1v-3.5a6.37 6.37 0 00-.79-.05A6.34 6.34 0 003.15 15.2a6.34 6.34 0 0010.86 4.48 6.3 6.3 0 001.86-4.49V8.74a8.26 8.26 0 004.84 1.56V6.84a4.84 4.84 0 01-1.12-.15z"/></svg></a>
+            <a href="https://www.youtube.com/@kaulatree" target="_blank" rel="noopener" class="footer-social-link" aria-label="YouTube"><svg viewBox="0 0 576 512" fill="currentColor"><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305zm-317.51 213.508V175.185l142.739 81.205-142.739 81.201z"/></svg></a>
+          </div>
         </div>
         <div class="footer-links-group">
           <h4 class="footer-heading">NAVIGATE</h4>
           <a href="../about/" class="footer-link">About</a>
           <a href="../trips/" class="footer-link">Trips</a>
-          <a href="../teachings/" class="footer-link">Teachings</a>
+          <a href="../resources/" class="footer-link">Resources</a>
           <a href="../contact/" class="footer-link">Contact</a>
         </div>
         <div class="footer-links-group">
@@ -204,12 +159,24 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2025 Kāula Tree. All rights reserved. | EIN: 92-2496479</p>
-        <p class="footer-location">Kaneohe, Hawai'i</p>
+        <p>&copy; 2026 Kāula Tree. All rights reserved. | EIN: 92-2496479</p>
+        <p class="footer-location">O'ahu, Hawai'i</p>
       </div>
     </div>
   </footer>
 
+  <!-- Video Modal (for past trip recap videos) -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-backdrop" id="videoModalBackdrop"></div>
+    <div class="video-modal-content">
+      <iframe id="videoIframe" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <button class="video-modal-close" id="videoClose">&times;</button>
+    </div>
+  </div>
+
+  <script src="../js/form-protect.js"></script>
+  <script src="../js/trips-config.js"></script>
   <script src="../js/page-animations.js"></script>
+  <script src="../js/trips-renderer.js"></script>
 </body>
 </html>
