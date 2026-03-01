@@ -1129,6 +1129,13 @@ a {
   text-shadow: 0 0 20px rgba(172, 173, 97, 0.4);
 }
 
+@media (max-width: 768px) {
+  .parallax-quote .verse-highlight {
+    color: var(--olive-light);
+    text-shadow: 0 0 20px rgba(172, 173, 97, 0.4);
+  }
+}
+
 .parallax-cite {
   font-family: var(--font-heading);
   font-size: 14px;
@@ -1746,6 +1753,78 @@ a {
 
 [data-animate="reveal"] {
   transform: none;
+}
+
+/* --- Hide QR code on small screens --- */
+@media (max-width: 500px) {
+  .qr-card {
+    display: none;
+  }
+
+  .phone-frame {
+    width: 240px;
+  }
+}
+
+/* --- Reduce section padding on very small screens --- */
+@media (max-width: 480px) {
+  .section {
+    padding: 48px 0;
+  }
+}
+
+/* --- Mobile Bio Link (hidden on desktop, visible on mobile) --- */
+.mobile-bio-link {
+  display: none;
+}
+
+/* --- Team Cards Mobile Overrides --- */
+@media (max-width: 768px) {
+  .mobile-bio-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--olive);
+    margin-top: 6px;
+  }
+
+  .mobile-bio-link .arrow {
+    font-size: 14px;
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .team-card:hover {
+    transform: none;
+  }
+
+  .team-card:hover .team-image {
+    transform: none;
+    filter: none;
+  }
+
+  .team-card:hover .team-image-wrap {
+    outline-offset: 10px;
+    outline-color: rgba(172, 173, 97, 0.4);
+  }
+
+  .team-overlay {
+    display: none;
+  }
+
+  .team-image-wrap {
+    outline-offset: 6px;
+  }
+
+  .team-card:hover .team-name {
+    color: var(--cream);
+  }
+
+  .team-card:hover .team-role {
+    color: rgba(248, 243, 236, 0.5);
+  }
 }
 
 /* Cursor follower */

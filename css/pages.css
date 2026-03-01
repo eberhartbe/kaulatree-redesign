@@ -70,6 +70,13 @@
   }
 }
 
+/* --- Page Hero — Small Screen Padding --- */
+@media (max-width: 480px) {
+  .page-hero {
+    padding: 140px 0 72px;
+  }
+}
+
 /* --- Breadcrumb --- */
 .breadcrumb {
   display: flex;
@@ -278,6 +285,23 @@
     grid-template-columns: 1fr;
     max-width: 400px;
     margin: 0 auto;
+  }
+}
+
+/* --- About Value Cards — Mobile Touch Overrides --- */
+@media (max-width: 768px) {
+  .about-value-card {
+    box-shadow: 0 4px 16px rgba(113, 84, 66, 0.08);
+    border-bottom: 3px solid var(--olive);
+  }
+
+  .about-value-card:hover {
+    transform: none;
+    box-shadow: 0 4px 16px rgba(113, 84, 66, 0.08);
+  }
+
+  .about-value-card:hover .about-value-icon {
+    transform: none;
   }
 }
 
