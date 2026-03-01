@@ -1796,6 +1796,11 @@ a {
     transition: transform 0.3s var(--ease-out);
   }
 
+  .team-card {
+    perspective: none;
+    will-change: auto;
+  }
+
   .team-card:hover {
     transform: none;
   }
@@ -1816,6 +1821,11 @@ a {
 
   .team-image-wrap {
     outline-offset: 6px;
+    transition: none;
+  }
+
+  .team-image {
+    transition: none;
   }
 
   .team-card:hover .team-name {

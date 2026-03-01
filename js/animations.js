@@ -301,6 +301,8 @@ const scrollAnimations = {
       });
     }
 
+    const isMobile = window.innerWidth <= 768;
+
     // All stat items with counters
     gsap.utils.toArray('[data-animate="counter"]').forEach(el => {
       const numberEl = el.querySelector('.stat-number');
@@ -309,6 +311,22 @@ const scrollAnimations = {
       const target = parseInt(numberEl.dataset.count);
       const suffix = numberEl.dataset.suffix || '';
       const finalText = String(target) + suffix;
+
+      if (isMobile) {
+        numberEl.textContent = finalText;
+        gsap.to(el, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 95%',
+            once: true
+          }
+        });
+        return;
+      }
 
       const reels = buildSlotMachine(numberEl, finalText);
 
@@ -330,6 +348,21 @@ const scrollAnimations = {
     gsap.utils.toArray('.stat-number.text-special').forEach(el => {
       const parent = el.closest('.stat-item');
       const finalText = el.textContent;
+
+      if (isMobile) {
+        gsap.to(parent, {
+          opacity: 1,
+          y: 0,
+          duration: 0.6,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: parent,
+            start: 'top 95%',
+            once: true
+          }
+        });
+        return;
+      }
 
       const reels = buildSlotMachine(el, finalText);
 
@@ -403,23 +436,27 @@ const scrollAnimations = {
       });
     }
 
-    // Team cards
+    // Team cards — skip per-card ScrollTrigger on mobile to avoid scroll jank
     const teamCards = gsap.utils.toArray('.team-card');
     if (teamCards.length) {
-      teamCards.forEach((card, i) => {
-        gsap.to(card, {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          delay: i * 0.15,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: card,
-            start: 'top 88%',
-            toggleActions: 'play none none none'
-          }
+      if (window.innerWidth <= 768) {
+        teamCards.forEach(card => gsap.set(card, { opacity: 1, y: 0 }));
+      } else {
+        teamCards.forEach((card, i) => {
+          gsap.to(card, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            delay: i * 0.15,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 88%',
+              toggleActions: 'play none none none'
+            }
+          });
         });
-      });
+      }
     }
   },
 
